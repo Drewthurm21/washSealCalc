@@ -1,4 +1,5 @@
 from flask.cli import AppGroup
+from app.models import environment, SCHEMA
 from .users import seed_users, undo_users
 from .item_types import seed_types, undo_types
 from .products import seed_products, undo_products
@@ -12,6 +13,9 @@ seed_commands = AppGroup('seed')
 # Creates the `flask seed all` command
 @seed_commands.command('all')
 def seed():
+    # clear tables before seeding in production
+    if environment == 'production':
+        undo()
     seed_users()
     seed_types()
     seed_products()
