@@ -21,8 +21,8 @@ export default function AreaCalc() {
           <p>Enter the length and width.</p>
         </div>
       
-        <div className="m-12 columns-2">
-          <form className='w-1/2 '>
+        <div className="m-12 columns-2 w-1/2">
+          <form>
           <div className="form-group before:">
               <label htmlFor="width">Length</label>
               <input
@@ -30,7 +30,7 @@ export default function AreaCalc() {
                 name="length"
                 id="length"
                 autoComplete="length"
-                className="block flex-1 border-0 bg-white py-1.5 pl-1 number-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                className="block text-xl flex-1 border-0 bg-white py-1.5 pl-1 number-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                 placeholder="enter length"
                 onChange={(e) => setArea({ ...area, length: e.target.value })}
               />
@@ -42,7 +42,7 @@ export default function AreaCalc() {
                 name="width"
                 id="width"
                 autoComplete="width"
-                className="block flex-1 border-0 bg-white py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
+                className="block text-xl flex-1 border-0 bg-white py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
                 placeholder="enter width"
                 onChange={(e) => setArea({ ...area, width: e.target.value })}
               />
