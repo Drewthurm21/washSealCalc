@@ -15,12 +15,16 @@ const NavBar = () => {
             Home
           </a>
         </div>
-        {user &&
-          <div className='mx-4'>
-            <a href='/inventory'>
-              Inventory
-            </a>
-          </div>}
+        <div className='mx-4'>
+          <a href='/newproduct'>
+            New Product
+          </a>
+        </div>
+        <div className='mx-4'>
+          <a href='/inventory'>
+            Inventory
+          </a>
+        </div>
         {!user ?
           <div className='mx-4'>
             <a href='/login'>
