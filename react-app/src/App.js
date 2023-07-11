@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { authenticate } from './store/session';
+
 import LoginForm from './components/auth/LoginForm';
 import NavBar from './components/NavBar';
-import { authenticate } from './store/session';
-import AreaCalc from './components/homepage/AreaCalc';
 import HomePage from './components/homepage/HomePage';
+import NewProductForm from './components/forms/NewProductForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -29,8 +30,8 @@ function App() {
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
-        <Route path='/areacalc' exact={true}>
-          <AreaCalc />
+        <Route path='/newproduct' exact={true}>
+          <NewProductForm />
         </Route>
         <Route path='/' exact={true} >
           <HomePage />
