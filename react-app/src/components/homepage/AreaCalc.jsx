@@ -45,10 +45,9 @@ export default function AreaCalc() {
     <>
       <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 rounded bg-indigo-400">
         <div className="flex flex-row justify-end cursor-pointer" onClick={addSection}>
-          <div
-            /> add section
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor"> 
-              <path d="M12 4v16m8-8H4" />
+          Add new section
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
         </div>
 
@@ -65,7 +64,7 @@ export default function AreaCalc() {
             </div>
           ))}
         </div>
-          <p className="mt-10 text-center text-2xl text-black">
+          <p className="mt-10 text-center font-bold text-4xl text-black">
             Total area: {totalArea}
           </p>
       </div>
@@ -82,10 +81,11 @@ function FormSection({ section, updateSection, closeSection}) {
 
   return (
     <form className="space-y-6" action="#" method="POST">
-      <div className='flex flex-row justify-end' onClick={() => closeSection(section.id)}>
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M6 18L18 6M6 6l12 12" />
-        </svg>
+      <div className='flex flex-row justify-end font-normal' onClick={() => closeSection(section.id)}>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+
       </div>
     <div>
       <div className="flex items-center justify-center">
@@ -121,7 +121,7 @@ function FormSection({ section, updateSection, closeSection}) {
           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-4"
         />
       </div>
-      <p className="mt-10 text-center text-2xl text-black">
+      <p className="mt-10 text-center font-normal text-2xl text-black">
           Section area: {section.length * section.width}
       </p>
     </div>
