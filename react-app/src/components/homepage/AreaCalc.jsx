@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 
-
-
 export default function AreaCalc() {
 
   const [totalArea, setTotalArea] = useState(0);
