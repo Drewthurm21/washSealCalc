@@ -1,40 +1,44 @@
 import { useEffect, useState } from "react";
 
+
+
 export default function AreaCalc() {
 
   const [totalArea, setTotalArea] = useState(0);
   const [sections, setSections] = useState([{
+    id: `${Date.now()}`,
     length: 0,
     width: 0,
-    area: 0
   }]);
 
-  const updateSection = (idx, section) => {
-    const newSections = [...sections];
-    newSections[idx] = section;
-    setSections(newSections);
-  }
-
-  const addSection = () => {
-    console.log('adding section')
-    const newSections = [...sections];
-    newSections.push({
-      length: 0,
-      width: 0,
-      area: 0
+  const updateSection = (id, newSection) => {
+    const newSections = sections.map((curSection) => {
+      if (curSection.id === id) {
+        return newSection;
+      }
+      return curSection;
     });
     setSections(newSections);
   }
 
-  const closeSection = (idx) => {
+  const addSection = () => {
     const newSections = [...sections];
-    newSections.splice(idx, 1);
+    newSections.push({
+      id: `${Date.now()}`,
+      length: 0,
+      width: 0,
+    });
+    setSections(newSections);
+  }
+
+  const closeSection = (id) => {
+    const newSections = sections.filter((section) => section.id !== id);
     setSections(newSections);
   }
 
   useEffect(() => {
     const totalArea = sections.reduce((acc, section) => {
-      return acc + section.area;
+      return acc + (section.length * section.width);
     }, 0);
     setTotalArea(totalArea);
   }, [sections]);
@@ -57,9 +61,9 @@ export default function AreaCalc() {
         </div>
 
         <div className="mt-10 sm:mx-auto font-bold flex flex-row">
-          {sections.map((_, idx) => (
+          {sections.map((section, idx) => (
             <div key={idx} className="flex flex-col justify-center mx-12">
-              <FormSection sectionIdx={idx} updateSection={updateSection} closeSection={closeSection} />
+              <FormSection section={section} updateSection={updateSection} closeSection={closeSection} />
             </div>
           ))}
         </div>
@@ -71,26 +75,16 @@ export default function AreaCalc() {
   )
 }
 
-function FormSection({ sectionIdx, updateSection, closeSection}) {
+function FormSection({ section, updateSection, closeSection}) {
 
-  const [sectionArea, setSectionArea] = useState({
-    length: 0,
-    width: 0,
-    area: 0
-  });
-
-  useEffect(() => {
-    const section = {
-      ...sectionArea,
-      area: sectionArea.length * sectionArea.width
-    }
-    setSectionArea(section);
-    updateSection(sectionIdx, section);
-  }, [sectionArea.length, sectionArea.width]);
+  const handleUpdate = (e) => {
+    const { name, value } = e.target;
+    updateSection(section.id, { ...section, [name]: value });
+  }
 
   return (
     <form className="space-y-6" action="#" method="POST">
-      <div className='flex flex-row justify-end' onClick={() => closeSection(sectionIdx)}>
+      <div className='flex flex-row justify-end' onClick={() => closeSection(section.id)}>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-black cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path d="M6 18L18 6M6 6l12 12" />
         </svg>
@@ -103,11 +97,11 @@ function FormSection({ sectionIdx, updateSection, closeSection}) {
       </div>
       <div className="mt-2">
         <input
-          id="Length"
-          name="Length"
+          id="length"
+          name="length"
           type="number"
-          value={sectionArea.length}
-          onChange={(e) => setSectionArea({ ...sectionArea, length: e.target.value })}
+          value={section.length}
+          onChange={handleUpdate}
           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-4"
         />
       </div>
@@ -124,13 +118,13 @@ function FormSection({ sectionIdx, updateSection, closeSection}) {
           id="width"
           name="width"
           type="number"
-          value={sectionArea.width}
-          onChange={(e) => setSectionArea({ ...sectionArea, width: e.target.value })}
+          value={section.width}
+          onChange={handleUpdate}
           className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 p-4"
         />
       </div>
       <p className="mt-10 text-center text-2xl text-black">
-          Section area: {sectionArea.length * sectionArea.width}
+          Section area: {section.length * section.width}
       </p>
     </div>
   </form>

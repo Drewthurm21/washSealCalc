@@ -11,19 +11,19 @@ const NavBar = () => {
     <nav className="container mx-auto text-4xl">
       <div className="flex justify-self-center justify-center max-w-2xl mx-auto">
         <div className='mx-4'>
-          <a href='/' exact={true} activeClassName='active'>
+          <a href='/'>
             Home
           </a>
         </div>
         {user &&
           <div className='mx-4'>
-            <a href='/areacalc' exact={true} activeClassName='active'>
+            <a href='/inventory'>
               Inventory
             </a>
           </div>}
         {!user ?
           <div className='mx-4'>
-            <a href='/login' exact={true} activeClassName='active'>
+            <a href='/login'>
               Login
             </a>
           </div>
