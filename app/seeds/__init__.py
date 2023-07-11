@@ -13,7 +13,7 @@ seed_commands = AppGroup('seed')
 # Creates the `flask seed all` command
 @seed_commands.command('all')
 def seed():
-    # clear tables before seeding in production
+    # clear tables for this schema before seeding in production
     if environment == 'production':
         undo()
     seed_users()

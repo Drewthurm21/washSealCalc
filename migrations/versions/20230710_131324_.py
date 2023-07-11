@@ -37,6 +37,8 @@ def upgrade():
                     sa.Column('type', sa.Integer(), nullable=False),
                     sa.Column('description', sa.String(
                         length=255), nullable=True),
+                    sa.Column('sqft_per_unit', sa.Numeric(
+                        asdecimal=False), nullable=False),
                     sa.ForeignKeyConstraint(['type'], ['item_types.id'], ),
                     sa.PrimaryKeyConstraint('id'),
                     sa.UniqueConstraint('name')

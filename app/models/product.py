@@ -12,6 +12,7 @@ class Product(db.Model):
     type = db.Column(db.Integer, db.ForeignKey(
         add_prefix_for_prod('item_types.id')), nullable=False)
     description = db.Column(db.String(255))
+    sqft_per_unit = db.Column(db.Numeric(asdecimal=False), default=0)
 
     purchases = db.relationship('Purchase', back_populates='product')
     item_type = db.relationship('ItemType', back_populates='items')
