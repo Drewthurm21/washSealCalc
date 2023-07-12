@@ -8,7 +8,7 @@ const NavBar = () => {
   const user = useSelector(state => state.session.user);
 
   return (
-    <nav className="container mx-auto text-4xl">
+    <nav className="container mx-auto text-3xl">
       <div className="flex justify-self-center justify-center max-w-2xl mx-auto">
         <div className='mx-4'>
           <a href='/'>

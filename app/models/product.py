@@ -25,6 +25,19 @@ class Product(db.Model):
             'description': self.description,
             'total_cost': self.total_cost(),
             'quantity_on_hand': self.quantity_on_hand(),
+            'sqft_per_unit': self.sqft_per_unit,
+        }
+
+    def to_dict_all(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'type': self.item_type.to_dict(),
+            'description': self.description,
+            'total_cost': self.total_cost(),
+            'quantity_on_hand': self.quantity_on_hand(),
+            'sqft_per_unit': self.sqft_per_unit,
+            'purchases': [purchase.to_dict() for purchase in self.purchases],
         }
 
     def quantity_on_hand(self):
