@@ -27,14 +27,16 @@ export const updateProductAction = (product) => ({
 
 
 export const getProductsThunk = () => async (dispatch) => {
-  const res = await axios.get('/api/products');
-  console.log(res.data)
-  dispatch(getProductsAction(res.data));
+  const { data: products } = await axios.get('/api/products/');
+  dispatch(getProductsAction(products));
 }
 
 export const addProductThunk = (product) => async (dispatch) => {
+  const res = await axios.post('/api/products/', product);
 
+  console.log(res)
 
+  // dispatch(addProductAction(product));
 }
 
 export const deleteProductThunk = (id) => async (dispatch) => {
