@@ -34,9 +34,7 @@ export const getProductsThunk = () => async (dispatch) => {
 export const addProductThunk = (product) => async (dispatch) => {
   const res = await axios.post('/api/products/', product);
 
-  console.log(res)
-
-  // dispatch(addProductAction(product));
+  dispatch(addProductAction(res.data));
 }
 
 export const deleteProductThunk = (id) => async (dispatch) => {
