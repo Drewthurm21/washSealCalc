@@ -7,6 +7,7 @@ import LoginForm from './components/auth/LoginForm';
 import NavBar from './components/NavBar';
 import HomePage from './components/homepage/HomePage';
 import NewProductForm from './components/forms/NewProductForm';
+import ProductList from './components/ProductList';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,6 +33,9 @@ function App() {
         </Route>
         <Route path='/newproduct' exact={true}>
           <NewProductForm />
+        </Route>
+        <Route path='/inventory' exact={true}>
+          <ProductList />
         </Route>
         <Route path='/' exact={true} >
           <HomePage />

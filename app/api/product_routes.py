@@ -1,32 +1,33 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import ItemType, Purchase, Product
+from app.models import Product
 
 product_routes = Blueprint('products', __name__)
 
+# GET /api/products
+
 
 @product_routes.route('/')
-@login_required
 def products():
-    products = Product.query.all()
-    return {'products': [product.to_dict() for product in products]}
+    return {product.id: product.to_dict_all() for product in Product.query.all()}
 
 
-@product_routes.route('/types')
-@login_required
-def product_types():
-    return {type.id: type.to_dict() for type in ItemType.query.all()}
+@product_routes.route('/test')
+def products_test():
+    product = Product.query.first()
+    return product.to_dict_all()
 
 
 @product_routes.route('/<int:id>')
-@login_required
 def product(id):
     product = Product.query.get(id)
     return product.to_dict()
 
 
 @product_routes.route('/<int:id>/purchases')
-@login_required
 def product_purchases(id):
     product = Product.query.get(id)
     return {purchase.id: purchase.to_dict() for purchase in product.purchases}
+
+
+# POST /api/products
