@@ -17,7 +17,7 @@ export default function ProductList() {
   return (
     <div className="bg-white shadow overflow-hidden sm:rounded-md mx-5 p-20">
       
-    <ul role="list" className="divide-y divide-gray-100">
+    <ul className="divide-y divide-gray-100">
     {Object.values(products).map((product) => (
       <li key={product.name} className="flex justify-between gap-x-6 py-5">
         <div className="flex gap-x-4">
